@@ -135,3 +135,4 @@ D:\GeekBrains\1. Разработчик C#. Специалист\19. Разра�
 D:\GeekBrains\1. Разработчик C#. Специалист\19. Разработка сетевого приложения на C# (семинары)\NetWork\Chat_CodeFirst\obj\Debug\net8.0\Chat_CodeFirst.pdb
 D:\GeekBrains\1. Разработчик C#. Специалист\19. Разработка сетевого приложения на C# (семинары)\NetWork\Chat_CodeFirst\obj\Debug\net8.0\Chat_CodeFirst.genruntimeconfig.cache
 D:\GeekBrains\1. Разработчик C#. Специалист\19. Разработка сетевого приложения на C# (семинары)\NetWork\Chat_CodeFirst\obj\Debug\net8.0\ref\Chat_CodeFirst.dll
+D:\GeekBrains\1. Разработчик C#. Специалист\19. Разработка сетевого приложения на C# (семинары)\NetWork\Chat_CodeFirst\obj\Debug\net8.0\Chat_CodeFirst.sourcelink.json

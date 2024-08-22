@@ -21,15 +21,18 @@ namespace Chat_CodeFirst
         public string? Text { get; set; }
         public string? ToName { get; set; }
         public string? FromName { get; set; }
-
         public string ToJSON()
         {
             return JsonSerializer.Serialize(this);
         }
-
         public static MessageUDP FromJSON(string json)
         {
             return JsonSerializer.Deserialize<MessageUDP>(json);
+        }
+
+        public override string ToString()
+        {
+            return $"{DateTime.Now}\n получено сообщение {Text}\n от пользователя {FromName}";
         }
     }
 }

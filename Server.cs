@@ -1,4 +1,5 @@
-﻿using Chat_CodeFirst.Models;
+﻿using Chat_CodeFirst.Abstractions;
+using Chat_CodeFirst.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Chat_CodeFirst
 {
@@ -13,6 +15,14 @@ namespace Chat_CodeFirst
     {
         Dictionary<string, IPEndPoint> clients = new Dictionary<string, IPEndPoint>();
         UdpClient udpClient;
+        private readonly IMessageSource _messageSource;
+        private readonly IPEndPoint _udpEndPoint;
+
+        public Server(IMessageSource messageSource, IPEndPoint udpEndPoint)
+        {
+            _messageSource = messageSource;
+            _udpEndPoint = udpEndPoint;
+        }
 
         public void Register(MessageUDP message, IPEndPoint fromEndPoint)
         {
@@ -62,16 +72,16 @@ namespace Chat_CodeFirst
                     chatConext.SaveChanges();
                     id = msg.Id;
                 }
-                string forwardMessageJson = new MessageUDP()
+                var forwardMessageJson = new MessageUDP()
                 {
                     Id = id,
                     Command = Command.Message,
                     ToName = message.ToName,
                     FromName = message.FromName,
                     Text = message.Text
-                }.ToJSON();
-                byte[] forwardBytes = Encoding.UTF8.GetBytes(forwardMessageJson);
-                udpClient.Send(forwardBytes, forwardBytes.Length, ep);
+                };
+                //byte[] forwardBytes = Encoding.UTF8.GetBytes(forwardMessageJson);
+                _messageSource.SendMessage(forwardMessageJson,_udpEndPoint);
                 Console.WriteLine($"Message Relied, from = {message.FromName} to = {message.ToName}");
             }
             else
